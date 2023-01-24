@@ -1,0 +1,137 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+.items {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  width: 300px;
+  margin: 0;
+  align-items: center;
+}
+
+.item__link {
+  color: #a3a0a9;
+  font-weight: 400;
+  text-decoration: none;
+  transition: 0.5s;
+  position: relative;
+  display: block;
+}
+
+.item__link::after {
+  position: absolute;
+  content: "";
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #3498db;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s;
+}
+
+.item__link:hover {
+  color: black;
+}
+
+.item__link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn {
+  color: white;
+  background-color: #9be3e2;
+  cursor: pointer;
+  border-radius: 20px;
+  border: none;
+  font-weight: 600;
+  padding: 10px 15px;
+}
+
+.navbar-buttons__login {
+  background-color: transparent;
+  border: none;
+  font-weight: 500;
+  margin-right: 25px;
+  font-size: 14px;
+  color: black;
+  cursor: pointer;
+}
+
+.wrap {
+  display: flex;
+  justify-content: space-between;
+}
+.offer {
+}
+.offer__header {
+  font-size: 70px;
+  line-height: 65px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.under-header {
+  margin-top: 50px;
+}
+.offer__text {
+  color: #a3a0a9;
+  line-height: 25px;
+  font-size: 18px;
+  max-width: 400px;
+}
+.offer .btn {
+  padding: 10px 25px;
+}
+.background-header__img {
+  max-width: 600px;
+}
+.area-input {
+  width: 100%;
+  height: 175px;
+  background: url("../images/bg-shorten-desktop.svg") no-repeat center;
+  background-size: cover;
+  background-color: #3a3053;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.action {
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+
+.action__input {
+  border-radius: 7px;
+  padding-left: 20px;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 750px;
+  height: 45px;
+}
+
+.action__button {
+  border-radius: 5px;
+  padding: 13px 20px;
+  margin-left: 20px;
+}
+.action__error {
+  position: absolute;
+  top: 50px;
+  left: 170px;
+}
