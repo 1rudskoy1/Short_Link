@@ -124,11 +124,22 @@ body {
   max-width: 750px;
   height: 45px;
 }
-
+.action__input_error {
+  border: 1px solid rgb(175, 49, 49);
+  color: red;
+}
+.action__input_error::placeholder {
+  color: rgb(175, 49, 49);
+}
 .action__button {
   border-radius: 5px;
   padding: 13px 20px;
   margin-left: 20px;
+}
+.action__button_error {
+  opacity: 0.7;
+  cursor: auto;
+  border: 1px solid rgb(175, 49, 49);
 }
 .action__error {
   position: absolute;
