@@ -16,5 +16,14 @@ input.addEventListener('blur', () =>{
         btn.classList.remove('action__button_error');
         
     }
+    
 
 });
+const shortCut = (url: string) => {
+    const resultPromise = new Promise((resolve, reject) => {
+        resolve(fetch(' https://api.shrtco.de/v2/shorten?url='+url))
+    }).then((result) => {
+        console.log(result)
+    })
+}
+shortCut('https://google.com');

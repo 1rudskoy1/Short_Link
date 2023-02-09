@@ -16,3 +16,11 @@ input.addEventListener('blur', function () {
         btn.classList.remove('action__button_error');
     }
 });
+var shortCut = function (url) {
+    var resultPromise = new Promise(function (resolve, reject) {
+        resolve(fetch(' https://api.shrtco.de/v2/shorten?url=' + url));
+    }).then(function (result) {
+        console.log(result);
+    });
+};
+shortCut('https://google.com');
