@@ -1,5 +1,6 @@
 const input:any = document.querySelector('[data-role = "input"]');
 const btn:any = document.querySelector('[data-role="main-btn"]');
+let shortedLink:Array<string> = [];
 input.addEventListener('blur', () =>{
     let value = input.value.split('://');
     let https = value[0] == "http" || value[0] == "https" ? true : false;
@@ -19,11 +20,21 @@ input.addEventListener('blur', () =>{
     
 
 });
-const shortCut = (url: string) => {
-    const resultPromise = new Promise((resolve, reject) => {
-        resolve(fetch(' https://api.shrtco.de/v2/shorten?url='+url))
-    }).then((result) => {
-        console.log(result)
-    })
+
+const shortCut = async (url: string): Promise<string> => {
+    const api = 'https://api.shrtco.de/v2/shorten?url=' + url;
+    try {
+        const response = await fetch(api, {method: 'POST'})
+        const data = await response.json()
+        shortedLink.push(data.result.short_link);
+        console.log(shortedLink)
+    } catch (error) {
+        if (error) {
+            return error.message
+        }
+    }
 }
-shortCut('https://google.com');
+btn.addEventListener('click', (): void =>{
+    const value:string = input.value;
+    shortCut(value);
+})
