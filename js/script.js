@@ -37,25 +37,14 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _this = this;
 var input = document.querySelector('[data-role = "input"]');
 var btn = document.querySelector('[data-role="main-btn"]');
+var itemsShort = document.querySelector('[data-role="items"]');
+var btnCopy = document.querySelectorAll('[data-role="copy"]');
 var shortedLink = [];
 input.addEventListener('blur', function () {
-    var value = input.value.split('://');
-    var https = value[0] == "http" || value[0] == "https" ? true : false;
-    if (value[1] < 3 || !https) {
-        var error = document.querySelector('.action__error');
-        error.style.display = "block";
-        input.classList.add('action__input_error');
-        btn.classList.add('action__button_error');
-    }
-    else {
-        var error = document.querySelector('.action__error');
-        error.style.display = "none";
-        input.classList.remove('action__input_error');
-        btn.classList.remove('action__button_error');
-    }
+    errorLink("Input correct link", input.value);
 });
 var shortCut = function (url) { return __awaiter(_this, void 0, void 0, function () {
-    var api, response, data, error_1;
+    var api, response, data, _i, shortedLink_1, link, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -69,8 +58,17 @@ var shortCut = function (url) { return __awaiter(_this, void 0, void 0, function
                 return [4 /*yield*/, response.json()];
             case 3:
                 data = _a.sent();
-                shortedLink.push(data.result.short_link);
-                console.log(shortedLink);
+                if (shortedLink.length !== 0) {
+                    for (_i = 0, shortedLink_1 = shortedLink; _i < shortedLink_1.length; _i++) {
+                        link = shortedLink_1[_i];
+                        if (link['long'] == url) {
+                            errorLink("This link already issue", input.value, true);
+                            return [2 /*return*/];
+                        }
+                    }
+                }
+                shortedLink.push({ short: data.result.short_link, long: url });
+                renderAdd(shortedLink);
                 return [3 /*break*/, 5];
             case 4:
                 error_1 = _a.sent();
@@ -82,7 +80,39 @@ var shortCut = function (url) { return __awaiter(_this, void 0, void 0, function
         }
     });
 }); };
+var renderAdd = function (shortArray) {
+    itemsShort.innerHTML = "";
+    shortArray.forEach(function (item) {
+        itemsShort.insertAdjacentHTML('afterbegin', "\n        <div class=\"short-link\">\n                    <p class=\"short-link__text\">".concat(item['long'], "</p>\n                    <div class=\"result\">\n                        <p class=\"result__link\">").concat(item['short'], "</p>\n                        <button class=\"btn result__btn\" data-role=\"copy\">Copy</button>\n                    </div>\n                </div>\n        "));
+    });
+    btnCopy = document.querySelectorAll('[data-role="copy"]');
+    addCopyListener();
+};
+var errorLink = function (errorType, link, err) {
+    if (err === void 0) { err = false; }
+    if (link.length < 6 || err === true) {
+        var error = document.querySelector('.action__error');
+        error.innerHTML = errorType;
+        error.style.display = "block";
+        input.classList.add('action__input_error');
+        btn.classList.add('action__button_error');
+    }
+    else {
+        var error = document.querySelector('.action__error');
+        error.style.display = "none";
+        input.classList.remove('action__input_error');
+        btn.classList.remove('action__button_error');
+    }
+};
 btn.addEventListener('click', function () {
     var value = input.value;
     shortCut(value);
 });
+var addCopyListener = function () {
+    btnCopy.forEach(function (copyItem) {
+        copyItem.addEventListener('click', function () {
+            copyItem.innerHTML = "Copied";
+            copyItem.classList.add('result__btn-copied');
+        });
+    });
+};

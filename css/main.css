@@ -312,3 +312,7 @@ body {
 .footer-item__link:hover {
   color: white;
 }
+.result__btn-copied {
+  background-color: #f0f1f6;
+  color: #9be3e2;
+}
