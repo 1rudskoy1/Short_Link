@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var _this = this;
 var input = document.querySelector('[data-role = "input"]');
 var btn = document.querySelector('[data-role="main-btn"]');
+var slideUp = document.querySelector('.slide-up');
 var itemsShort = document.querySelector('[data-role="items"]');
 var btnCopy = document.querySelectorAll('[data-role="copy"]');
 var shortedLink = [];
@@ -83,7 +84,7 @@ var shortCut = function (url) { return __awaiter(_this, void 0, void 0, function
 var renderAdd = function (shortArray) {
     itemsShort.innerHTML = "";
     shortArray.forEach(function (item) {
-        itemsShort.insertAdjacentHTML('afterbegin', "\n        <div class=\"short-link\">\n                    <p class=\"short-link__text\">".concat(item['long'], "</p>\n                    <div class=\"result\">\n                        <p class=\"result__link\">").concat(item['short'], "</p>\n                        <button class=\"btn result__btn\" data-role=\"copy\">Copy</button>\n                    </div>\n                </div>\n        "));
+        itemsShort.insertAdjacentHTML('afterbegin', "\n        <div class=\"short-link\">\n                    <p class=\"short-link__text\">".concat(item['long'].length < 60 ? item['long'] : item['long'].slice(0, 60) + "...", "</p>\n                    <div class=\"result\">\n                        <p class=\"result__link\">").concat(item['short'], "</p>\n                        <button class=\"btn result__btn\" data-role=\"copy\">Copy</button>\n                    </div>\n                </div>\n        "));
     });
     btnCopy = document.querySelectorAll('[data-role="copy"]');
     addCopyListener();
@@ -112,6 +113,16 @@ var addCopyListener = function () {
     btnCopy.forEach(function (copyItem) {
         copyItem.addEventListener('click', function () {
             copyItem.innerHTML = "Copied";
+            navigator.clipboard.writeText(copyItem.parentNode.querySelector('.result__link').innerHTML)
+                .then(function () {
+                copyItem.classList.add('no-after');
+                slideUp.classList.add('slideAnimation');
+                setTimeout(function () {
+                    slideUp.classList.remove('slideAnimation');
+                }, 1400);
+            })["catch"](function (err) {
+                console.log('Something went wrong', err);
+            });
             copyItem.classList.add('result__btn-copied');
         });
     });

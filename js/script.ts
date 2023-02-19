@@ -1,5 +1,6 @@
 const input:any = document.querySelector('[data-role = "input"]');
 const btn:any = document.querySelector('[data-role="main-btn"]');
+const slideUp:any = document.querySelector('.slide-up');
 let itemsShort:any = document.querySelector('[data-role="items"]');
 let btnCopy:any = document.querySelectorAll('[data-role="copy"]');
 let shortedLink:Array<object> = [];
@@ -35,7 +36,7 @@ const renderAdd = (shortArray: Array<object>): void => {
     shortArray.forEach((item) => {
         itemsShort.insertAdjacentHTML('afterbegin', `
         <div class="short-link">
-                    <p class="short-link__text">${item['long']}</p>
+                    <p class="short-link__text">${item['long'].length < 60 ? item['long'] : item['long'].slice(0, 60) +"..."}</p>
                     <div class="result">
                         <p class="result__link">${item['short']}</p>
                         <button class="btn result__btn" data-role="copy">Copy</button>
@@ -71,6 +72,17 @@ const addCopyListener = () => {
    btnCopy.forEach((copyItem)=>{
     copyItem.addEventListener('click', () => {
         copyItem.innerHTML = "Copied";
+            navigator.clipboard.writeText(copyItem.parentNode.querySelector('.result__link').innerHTML)
+        .then(() => {
+            copyItem.classList.add('no-after');
+            slideUp.classList.add('slideAnimation');
+            setTimeout(()=>{
+                slideUp.classList.remove('slideAnimation');
+            },1400)
+        })
+        .catch(err => {
+            console.log('Something went wrong', err);
+        });
         copyItem.classList.add('result__btn-copied');
     })
 })   
