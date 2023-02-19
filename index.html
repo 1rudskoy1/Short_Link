@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/response.css">
     <link rel="icon" href="./images/favicon-32x32.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +18,9 @@
 
 <body>
     <header class="header">
+        <div class="slide-up">
+            <h3 class="slide-up__head">Скопированно</h3>
+        </div>
         <div class="container">
             <nav class="navbar">
                 <div class="navbar-logo">
@@ -60,32 +64,11 @@
             <div class="area-input">
                 <div class="action">
                     <input data-role="input" class="action__input" type="text" placeholder="Shorten a link here ...">
-                    <button data-role="main-btn" class="action__button btn" disabled>Shorten It!</button>
+                    <button data-role="main-btn" class="action__button btn">Shorten It!</button>
                     <span class="action__error">Please add correct link</span>
                 </div>
             </div>
-            <div class="items-short">
-                <div class="short-link">
-                    <p class="short-link__text">https://www.frontendmentor.io</p>
-                    <div class="result">
-                        <p class="result__link">https://rei.ink/k3Kyk</p>
-                        <button class="btn result__btn">Copy</button>
-                    </div>
-                </div>
-                <div class="short-link">
-                    <p class="short-link__text">https://www.frontendmentor.io</p>
-                    <div class="result">
-                        <p class="result__link">https://rei.ink/k3Kyk</p>
-                        <button class="btn result__btn result__btn_active">Copied!</button>
-                    </div>
-                </div>
-                <div class="short-link">
-                    <p class="short-link__text">https://www.frontendmentor.io</p>
-                    <div class="result">
-                        <p class="result__link">https://rei.ink/k3Kyk</p>
-                        <button class="btn result__btn">Copy</button>
-                    </div>
-                </div>
+            <div class="items-short" data-role="items">
             </div>
         </div>
     </section>
@@ -93,30 +76,37 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-header__head">Advanced Statistics</h2>
-                <p class="section-header__text">Track how your links are performing across the web with our advanced
+                <p class="section-header__text section-header__text">Track how your links are performing across the web
+                    with our advanced
                     statistics dashboard.</p>
             </div>
             <div class="cards">
                 <div class="card">
-                    <img class="card__img" src="./images/icon-brand-recognition.svg" alt="">
+                    <div class="card__img">
+                        <img src="./images/icon-brand-recognition.svg" alt="">
+                    </div>
                     <h4 class="card__head">Brand Recognition</h4>
-                    <p class="card__text">
+                    <p class="card__text section-header__text">
                         Booost your brand recognition with each click. Generic links son't mean a thing. Branded links
                         help instill confidence in your content.
                     </p>
                 </div>
                 <div class="card">
-                    <img class="card__img" src="./images/icon-brand-recognition.svg" alt="">
+                    <div class="card__img">
+                        <img src="./images/icon-detailed-records.svg" alt="">
+                    </div>
                     <h4 class="card__head">Brand Recognition</h4>
-                    <p class="card__text">
+                    <p class="card__text section-header__text">
                         Booost your brand recognition with each click. Generic links son't mean a thing. Branded links
                         help instill confidence in your content.
                     </p>
                 </div>
                 <div class="card">
-                    <img class="card__img" src="./images/icon-brand-recognition.svg" alt="">
+                    <div class="card__img">
+                        <img src="./images/icon-fully-customizable.svg" alt="">
+                    </div>
                     <h4 class="card__head">Brand Recognition</h4>
-                    <p class="card__text">
+                    <p class="card__text section-header__text">
                         Booost your brand recognition with each click. Generic links son't mean a thing. Branded links
                         help instill confidence in your content.
                     </p>
@@ -128,13 +118,13 @@
         <div class="container">
             <div class="click">
                 <h1 class="click__head">Boost your links today</h1>
-                <button class="btn">Get Started</button>
+                <button class="btn boost__btn">Get Started</button>
             </div>
         </div>
     </section>
     <footer class="footer">
         <div class="container">
-            <div class="wrap">
+            <div class="wrap wrap-footer">
                 <div class="footer-logo">
                     <img src="./images/logo.svg" alt="">
                 </div>
